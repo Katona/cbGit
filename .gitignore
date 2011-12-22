@@ -1,0 +1,8 @@
+*.zip
+*.so
+*.cbplugin
+*.depend
+*.layout
+bin
+.objs
+*.cbp~
