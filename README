@@ -1,0 +1,17 @@
+1. Overview
+
+cbGit is going to be a simple Git plugin for the Code::Blocks IDE. I started it
+to practice C++, Code:Blocks and Git. Since all these things are quite new for
+me, it may took a while to create a usable and stable tool.
+
+2. Compile
+
+The plugin is being developed with Code::Blocks itself under Linux. The
+repository contains the whole project, no Makefile has been created yet for the
+compilation.
+
+3. Additional information
+
+The plugin is being developed on Linux, I have not tried to compile it on other
+OS, it may compile but probably it wouldn't work. There is no dependency on
+other libraries, but Git must be installed for the plugin to work.
