@@ -29,7 +29,8 @@ void FilesByFolder::addFileToFolder(const string& folder, ProjectFile* file) {
 }
 
 const vector<ProjectFile*>& FilesByFolder::getFilesRecursively(const string& folder) {
-    vector<ProjectFile*>* files = m_filesByFolder[folder];
+    Path path(folder);
+    vector<ProjectFile*>* files = m_filesByFolder[path.getFullPath()];
     return files == NULL
             ? EMPTY_PRFILE_VECTOR
             : *files;

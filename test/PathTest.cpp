@@ -24,6 +24,7 @@ TEST(PathTest)
     CHECK_EQUAL(true, path.endReached());
     path.step();
     CHECK_EQUAL("folder/subfolder/subsubfolder", path.getCurrentPath());
+
 }
 
 TEST(EmptyPathTest)
@@ -35,4 +36,10 @@ TEST(EmptyPathTest)
     CHECK_EQUAL(true, anotherPath.endReached());
 }
 
+TEST(FullPathTest)
+{
+    string strTestPath("folder/subfolder/subsubfolder/file.txt");
+    Path path(strTestPath);
+    CHECK_EQUAL("folder/subfolder/subsubfolder", path.getFullPath());
+}
 }

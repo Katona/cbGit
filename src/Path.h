@@ -12,15 +12,16 @@ class Path
         Path(const string& relativeFileName);
         void reset();
         void step();
-        bool endReached();
-        string getCurrentPath();
+        bool endReached() const;
+        string getCurrentPath() const;
+        const string& getFullPath() const;
         virtual ~Path();
     protected:
     private:
         string m_fullPath;
         int m_currentSeparatorIndex;
 
-        string getPathWithTrailingSeparator(const string& relativeFileName);
+        string getPathWithoutTrailingSeparator(const string& relativeFileName);
 };
 
 #endif // PATH_H
