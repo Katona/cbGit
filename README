@@ -31,4 +31,4 @@ other libraries, but Git must be installed for the plugin to work.
 
 Constant refactoring...
 
-Adding new features: git push/pull, diff, change history.
+Adding new features: remove file, push/pull, diff, change history.
