@@ -8,7 +8,7 @@
 #include "../../model/GitStatusCommand.h"
 #include "../../model/FileStatuses.h"
 #include "../ProjectFileUpdater.h"
-#include "../../Utils.h"
+#include "../../utils/Utils.h"
 
 AddFileActionHandler::AddFileActionHandler()
 {

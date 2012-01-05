@@ -1,7 +1,7 @@
 #include "FileStatuses.h"
 #include "GitFileStatus.h"
-#include "../Path.h"
-#include "../Utils.h"
+#include "../utils/Path.h"
+#include "../utils/Utils.h"
 
 FileStatuses::FileStatuses()
 {

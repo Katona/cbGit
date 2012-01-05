@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "../../model/GitFileStatus.h"
-#include "../../Utils.h"
+#include "../../utils/Utils.h"
 #include "../../model/GitCommitCommand.h"
 #include "../../model/GitStatusCommand.h"
 #include "../../view/CommitDlgMain.h"

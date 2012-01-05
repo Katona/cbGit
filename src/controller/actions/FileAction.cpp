@@ -2,7 +2,7 @@
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
 #include "../../model/FileStatuses.h"
-#include "../../Utils.h"
+#include "../../utils/Utils.h"
 
 FileAction::FileAction(const string& actionText, MenuActionHandler* handler,
                        ProjectFile& projectFile) :

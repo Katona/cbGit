@@ -4,7 +4,7 @@
 
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
-#include "../../Utils.h"
+#include "../../utils/Utils.h"
 #include "../../view/CommitDlgMain.h"
 #include "../../controller/ProjectUpdater.h"
 

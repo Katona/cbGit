@@ -52,10 +52,6 @@
 		<Unit filename="manifest.xml">
 			<Option target="default" />
 		</Unit>
-		<Unit filename="src/Path.cpp" />
-		<Unit filename="src/Path.h" />
-		<Unit filename="src/Utils.cpp" />
-		<Unit filename="src/Utils.h" />
 		<Unit filename="src/cbGit.cpp">
 			<Option target="default" />
 		</Unit>
@@ -124,6 +120,10 @@
 		<Unit filename="src/model/GitStatusCommand.h" />
 		<Unit filename="src/model/ShellCommand.cpp" />
 		<Unit filename="src/model/ShellCommand.h" />
+		<Unit filename="src/utils/Path.cpp" />
+		<Unit filename="src/utils/Path.h" />
+		<Unit filename="src/utils/Utils.cpp" />
+		<Unit filename="src/utils/Utils.h" />
 		<Unit filename="src/view/CommitDlgMain.cpp" />
 		<Unit filename="src/view/CommitDlgMain.h" />
 		<Unit filename="src/view/ContextMenuContribution.cpp" />

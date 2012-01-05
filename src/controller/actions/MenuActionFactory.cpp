@@ -7,7 +7,7 @@
 #include "RevertFileAction.h"
 #include "MenuActionSet.h"
 #include "../../model/GitStatusCommand.h"
-#include "../../Utils.h"
+#include "../../utils/Utils.h"
 
 
 using namespace std;

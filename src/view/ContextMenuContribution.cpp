@@ -8,7 +8,7 @@
 
 #include "../model/GitStatusCommand.h"
 #include "../controller/actions/MenuAction.h"
-#include "../Utils.h"
+#include "../utils/Utils.h"
 #include "../controller/actions/MenuActionFactory.h"
 #include "../controller/actions/MenuActionSet.h"
 

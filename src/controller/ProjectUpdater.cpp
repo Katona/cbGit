@@ -5,7 +5,7 @@
 #include "../model/GitFileStatus.h"
 #include "../model/FileStatuses.h"
 #include "ProjectFileUpdater.h"
-#include "../Utils.h"
+#include "../utils/Utils.h"
 
 using namespace std;
 

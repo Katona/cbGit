@@ -1,7 +1,7 @@
 #include "RevertFileActionHandler.h"
 #include <iostream>
 #include "../../model/GitModel.h"
-#include "../../Utils.h"
+#include "../../utils/Utils.h"
 
 using namespace std;
 
