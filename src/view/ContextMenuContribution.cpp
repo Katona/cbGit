@@ -56,6 +56,10 @@ void ContextMenuContribution::expandMenu(const ModuleType type, wxMenu* menu,
 void ContextMenuContribution::expandProjectManagerMenu(
     const ModuleType type, wxMenu* menu, const FileTreeData* data)
 {
+    if (data == NULL) {
+        return;
+    }
+
     switch ( data->GetKind() )
     {
     case FileTreeData::ftdkProject:
