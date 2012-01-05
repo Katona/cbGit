@@ -22,6 +22,7 @@ void AbstractEventHandler::registerHandler(Manager& manager) {
 }
 
 void AbstractEventHandler::unregisterHandler(Manager& manager) {
+    manager.RemoveAllEventSinksFor(this);
 }
 
 AbstractEventHandler::~AbstractEventHandler()
