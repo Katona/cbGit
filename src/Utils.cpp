@@ -39,3 +39,7 @@ cbProject* getSelectedProject(const FileTreeData* fileTreeData) {
         getSelectedTreeData();
     return data == NULL ? NULL : data->GetProject();
 }
+
+bool startsWith(const string& comparedString, const string& prefix) {
+    return comparedString.compare(0, prefix.size(), prefix) == 0;
+}

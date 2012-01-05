@@ -27,19 +27,6 @@ void CommitProjectActionHandler::onActionFired(wxCommandEvent& event) {
     }
 }
 
-void CommitProjectActionHandler::stageNecessaryFiles(const string& workDir) {
-    GitModel gitModel(workDir);
-    vector<GitFileStatus> statuses;
-    gitModel.getStatus(statuses);
-    vector<string> filesToStage;
-    for (vector<GitFileStatus>::size_type i = 0; i < statuses.size(); i++) {
-        if (statuses[i].getWorkTreeStatus() != GitFileStatus::none) {
-            filesToStage.push_back(statuses[i].getFileName());
-        }
-    }
-    gitModel.add(filesToStage);
-}
-
 CommitProjectActionHandler::~CommitProjectActionHandler()
 {
     //dtor

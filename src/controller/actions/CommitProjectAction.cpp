@@ -3,6 +3,7 @@
 #include "CommitProjectActionHandler.h"
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
+#include "../../model/FileStatuses.h"
 #include "../../Utils.h"
 
 MenuActionHandler* CommitProjectAction::HANDLER = new CommitProjectActionHandler();
@@ -18,9 +19,9 @@ bool CommitProjectAction::enabledFor(cbProject& project) const {
     string workDir = toString(project.GetCommonTopLevelPath());
 
     GitModel gitModel(workDir);
-    vector<GitFileStatus> statuses;
+    FileStatuses statuses;
     gitModel.getStatus(statuses);
-    return !statuses.empty();
+    return !statuses.isEmpty();
 }
 
 CommitProjectAction::~CommitProjectAction()

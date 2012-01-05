@@ -52,8 +52,6 @@
 		<Unit filename="manifest.xml">
 			<Option target="default" />
 		</Unit>
-		<Unit filename="src/FilesByFolder.cpp" />
-		<Unit filename="src/FilesByFolder.h" />
 		<Unit filename="src/Path.cpp" />
 		<Unit filename="src/Path.h" />
 		<Unit filename="src/Utils.cpp" />
@@ -106,6 +104,8 @@
 		<Unit filename="src/controller/event/FileSavedHandler.h" />
 		<Unit filename="src/controller/event/ProjectOpenedHandler.cpp" />
 		<Unit filename="src/controller/event/ProjectOpenedHandler.h" />
+		<Unit filename="src/model/FileStatuses.cpp" />
+		<Unit filename="src/model/FileStatuses.h" />
 		<Unit filename="src/model/GitAddCommand.cpp" />
 		<Unit filename="src/model/GitAddCommand.h" />
 		<Unit filename="src/model/GitCheckoutCommand.cpp" />

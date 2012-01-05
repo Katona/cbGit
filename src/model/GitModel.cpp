@@ -4,13 +4,14 @@
 #include "GitAddCommand.h"
 #include "GitCheckoutCommand.h"
 #include "GitResetCommand.h"
+#include "FileStatuses.h"
 
 GitModel::GitModel(const string& workDir) : m_workDir(workDir)
 {
     //ctor
 }
 
-void GitModel::getStatus(vector<GitFileStatus>& result, const string& fileName) {
+void GitModel::getStatus(FileStatuses& fileStatuses, const string& fileName) {
 
     GitStatusCommand* cmd;
     if (fileName == "") {
@@ -18,7 +19,7 @@ void GitModel::getStatus(vector<GitFileStatus>& result, const string& fileName) 
     } else {
         cmd = new GitStatusCommand(m_workDir, fileName);
     }
-    cmd->getFileStatuses(result);
+    cmd->getFileStatuses(fileStatuses);
 
     delete cmd;
 }

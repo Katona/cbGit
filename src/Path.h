@@ -10,18 +10,11 @@ class Path
 {
     public:
         Path(const string& relativeFileName);
-        void reset();
-        void step();
-        bool endReached() const;
-        string getCurrentPath() const;
-        const string& getFullPath() const;
+        bool isDirectory() const;
         virtual ~Path();
     protected:
     private:
-        string m_fullPath;
-        int m_currentSeparatorIndex;
-
-        string getPathWithoutTrailingSeparator(const string& relativeFileName);
+        string m_relativeFileName;
 };
 
 #endif // PATH_H

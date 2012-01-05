@@ -6,7 +6,7 @@ ProjectFileUpdater::ProjectFileUpdater()
     //ctor
 }
 
-void ProjectFileUpdater::updateFile(ProjectFile& projFile, GitFileStatus& gitStatus) {
+void ProjectFileUpdater::updateFile(ProjectFile& projFile, const GitFileStatus& gitStatus) {
     updateFile(projFile, gitStatus.getStatus());
 }
 
@@ -21,6 +21,8 @@ FileVisualState ProjectFileUpdater::convert(GitFileStatus::FileStatus fileStatus
         return fvsVcModified;
     } else if (fileStatus == GitFileStatus::untracked) {
         return fvsVcNonControlled;
+    } else if (fileStatus == GitFileStatus::none) {
+        return fvsVcUpToDate;
     }
     return fvsNormal;
 

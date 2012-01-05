@@ -3,6 +3,7 @@
 #include "ProjectUpdater.h"
 #include "../model/GitStatusCommand.h"
 #include "../model/GitFileStatus.h"
+#include "../model/FileStatuses.h"
 #include "ProjectFileUpdater.h"
 #include "../Utils.h"
 
@@ -11,14 +12,6 @@ using namespace std;
 ProjectUpdater::ProjectUpdater()
 {
     //ctor
-}
-
-void ProjectUpdater::init(cbProject& project) {
-    for (int i = 0; i < project.GetFilesCount(); i++) {
-        ProjectFile* projectFile = project.GetFile(i);
-        projectFile->SetFileState(fvsVcUpToDate);
-        m_filesByFolder.addFile(projectFile);
-    }
 }
 
 void ProjectUpdater::updateProjects(vector<cbProject*>& projects) {
@@ -37,27 +30,20 @@ void ProjectUpdater::traceProjectFiles(cbProject& proj) {
 }
 
 void ProjectUpdater::updateProjectFiles(cbProject& cbProject,
-                                vector<GitFileStatus>& gitFileStatuses) {
+                                const FileStatuses& gitFileStatuses) {
 
     ProjectFileUpdater fileUpdater;
 
-    for (vector<GitFileStatus>::size_type i = 0; i < gitFileStatuses.size(); i++) {
-        string fileName = gitFileStatuses[i].getFileName();
-        wxString wxFileName = toWxStr(fileName);
-        ProjectFile* projectFile = cbProject.GetFileByFilename(wxFileName);
-        if (projectFile != NULL) {
-            fileUpdater.updateFile((*projectFile), gitFileStatuses[i]);
-        } else if (gitFileStatuses[i].getStatus() == GitFileStatus::untracked) {
-            markFolderAsUntracked(fileName, fileUpdater);
+    for (int i = 0; i < cbProject.GetFilesCount(); i++) {
+        ProjectFile* prFile = cbProject.GetFile(i);
+        if (prFile == NULL) {
+            // Should not happen
+            // TODO: log
+            continue;
         }
-    }
-}
-
-void ProjectUpdater::markFolderAsUntracked(const string& folder, ProjectFileUpdater& fileUpdater) {
-    const vector<ProjectFile*>& filesInFolder =
-        m_filesByFolder.getFilesRecursively(folder);
-    for (vector<ProjectFile*>::size_type i = 0; i < filesInFolder.size(); i++) {
-        fileUpdater.updateFile(*(filesInFolder[i]), GitFileStatus::untracked);
+        string fileName = toString(prFile->relativeFilename);
+        const GitFileStatus& status = gitFileStatuses.getStatus(fileName);
+        fileUpdater.updateFile((*prFile), status);
     }
 }
 
@@ -66,9 +52,8 @@ void ProjectUpdater::updateProject(cbProject& project) {
         if (!statusCmd.isGitRepository()) {
             return;
         }
-        init(project);
         traceProjectFiles(project);
-        vector<GitFileStatus> gitFileStatuses;
+        FileStatuses gitFileStatuses;
         statusCmd.getFileStatuses(gitFileStatuses);
         updateProjectFiles(project, gitFileStatuses);
 }

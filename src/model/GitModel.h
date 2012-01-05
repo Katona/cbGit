@@ -6,13 +6,13 @@
 
 using namespace std;
 
-class GitFileStatus;
+class FileStatuses;
 
 class GitModel
 {
     public:
         GitModel(const string& workDir);
-        void getStatus(vector<GitFileStatus>& result,
+        void getStatus(FileStatuses& fileStatuses,
                        const string& fileName = "");
         void add(const vector<string>& filesToAdd);
         void commitAll(const string& message);

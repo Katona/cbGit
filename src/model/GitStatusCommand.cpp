@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sys/stat.h>
 #include "GitStatusCommand.h"
+#include "FileStatuses.h"
 
 using namespace std;
 
@@ -19,22 +20,20 @@ GitStatusCommand::GitStatusCommand(const string& workDir, const string& fileName
     addArgument("--porcelain");
 }
 
-void GitStatusCommand::getFileStatuses(vector<GitFileStatus>& fileStatuses) {
-    int result = execute();
-    if (result == ShellCommand::RESULT_FAILURE) {
+void GitStatusCommand::getFileStatuses(FileStatuses& fileStatuses) {
+    int cmdRes = execute();
+    if (cmdRes == ShellCommand::RESULT_FAILURE) {
         // TODO:log
         return;
     }
     vector<string> outputLines;
     getOutputLines(outputLines);
 //    cout << "Parsing output lines" << endl;
-    GitFileStatus status;
     for (vector<string>::size_type i = 0; i < outputLines.size(); i++) {
-        GitFileStatus status = parseLine(outputLines[i]);
+        GitFileStatus* status = parseLine(outputLines[i]);
 //        cout << "Putting to the vector" << endl;
-        fileStatuses.push_back(status);
+        fileStatuses.add(auto_ptr<const GitFileStatus>(status));
     }
-
 
 }
 
@@ -51,17 +50,16 @@ GitFileStatus::FileStatus GitStatusCommand::convert(char statusChar) const {
     }
 }
 
-GitFileStatus GitStatusCommand::parseLine(const string& line) const {
+GitFileStatus* GitStatusCommand::parseLine(const string& line) const {
 //    cout << "Parsing line: " << line << endl;
     char stagingStatusChar = line[0];
     char workTreeStatusChar = line[1];
     string fileName = line.substr(3);
 //    cout << "Staging stat: " << stagingStatusChar << " Work Tree: " << workTreeStatusChar <<
 //        "FIle Name:" << fileName << endl;
-    GitFileStatus status(fileName,
+    return new GitFileStatus(fileName,
                          convert(stagingStatusChar),
                          convert(workTreeStatusChar));
-    return status;
 }
 
 GitStatusCommand::~GitStatusCommand()

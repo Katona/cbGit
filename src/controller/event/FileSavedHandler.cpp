@@ -4,6 +4,7 @@
 #include "../ProjectFileUpdater.h"
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
+#include "../../model/FileStatuses.h"
 #include "../../Utils.h"
 
 using namespace std;
@@ -26,17 +27,11 @@ void FileSavedHandler::handleEvent(CodeBlocksEvent& event) {
     }
     string fileName = toString(file->relativeFilename);
     string workDir = toString(file->GetParentProject()->GetCommonTopLevelPath());
-    vector<GitFileStatus> statuses;
+    FileStatuses statuses;
     GitModel model(workDir);
     model.getStatus(statuses, fileName);
-    if (statuses.empty()) {
-        file->SetFileState(fvsVcUpToDate);
-    } else {
-        ProjectFileUpdater updater;
-        updater.updateFile(*file, statuses[0]);
-    }
-
-
+    ProjectFileUpdater updater;
+    updater.updateFile(*file, statuses.getStatus(fileName));
 }
 
 FileSavedHandler::~FileSavedHandler()

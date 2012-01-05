@@ -6,6 +6,7 @@
 #include "AddFileActionHandler.h"
 #include "../../model/GitAddCommand.h"
 #include "../../model/GitStatusCommand.h"
+#include "../../model/FileStatuses.h"
 #include "../ProjectFileUpdater.h"
 #include "../../Utils.h"
 
@@ -24,10 +25,10 @@ void AddFileActionHandler::onActionFired(wxCommandEvent& event) {
         GitAddCommand addCommand(workDir, fileName);
         addCommand.execute();
         GitStatusCommand statusCmd(workDir, fileName);
-        vector<GitFileStatus> fileStatuses;
+        FileStatuses fileStatuses;
         statusCmd.getFileStatuses(fileStatuses);
         ProjectFileUpdater fileUpdater;
-        fileUpdater.updateFile((*f), fileStatuses[0]);
+        fileUpdater.updateFile((*f), fileStatuses.getStatus(fileName));
     }
 
 

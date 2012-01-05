@@ -8,7 +8,7 @@ class ProjectFileUpdater
 {
     public:
         ProjectFileUpdater();
-        void updateFile(ProjectFile& projFile, GitFileStatus& gitStatus);
+        void updateFile(ProjectFile& projFile, const GitFileStatus& gitStatus);
         void updateFile(ProjectFile& projFile, GitFileStatus::FileStatus fileStatus);
         virtual ~ProjectFileUpdater();
     protected:

@@ -7,14 +7,11 @@
 #include <globals.h>
 
 #include "../model/GitFileStatus.h"
-#include "../FilesByFolder.h"
 
 
 using namespace std;
 
-class ProjectFile;
-class FilesByFolder;
-class ProjectFileUpdater;
+class FileStatuses;
 
 class ProjectUpdater
 {
@@ -25,15 +22,10 @@ class ProjectUpdater
         virtual ~ProjectUpdater();
     protected:
     private:
-
-        FilesByFolder m_filesByFolder;
-
         void updateProjectFiles(cbProject& cbProject,
-                                vector<GitFileStatus>& gitFileStatuses);
-        FileVisualState convert(GitFileStatus::FileStatus fileStatus);
+                                const FileStatuses& statuses);
         void init(cbProject& project);
         void traceProjectFiles(cbProject& proj);
-        void markFolderAsUntracked(const string& folder, ProjectFileUpdater& fileUpdater);
 };
 
 #endif // PROJECTUPDATER_H
