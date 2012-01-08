@@ -9,8 +9,8 @@ me, it may took a while to create a usable and stable tool.
 There are only a limited number of features currently:
     - File statuses (untracked, added, modified, up-to-date) are shown in the
       Projects view. Since Code:Blocks can only show one status of a file, the
-      work tree status is shown if the file has, otherwise it's status in the
-      staging are is displayed.
+      work tree status is shown first, and if the file doesn't have then it's 
+      status in the staging are is displayed.
     - Files can be added (git add), commited (git commit -m), reverted (git checkout).
     - Projects can be commited. Uses 'git commit -a', therefore files which are
       untracked (and not added by hand) will not be commited.
@@ -29,4 +29,6 @@ other libraries, but Git must be installed for the plugin to work.
 
 5. TODO
 
-Constant of refactoring...
+Constant refactoring...
+
+Adding new features: remove file, push/pull, diff, change history.
