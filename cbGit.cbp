@@ -124,6 +124,10 @@
 		<Unit filename="src/utils/Path.h" />
 		<Unit filename="src/utils/Utils.cpp" />
 		<Unit filename="src/utils/Utils.h" />
+		<Unit filename="src/utils/cbGitFile.cpp" />
+		<Unit filename="src/utils/cbGitFile.h" />
+		<Unit filename="src/utils/cbGitProject.cpp" />
+		<Unit filename="src/utils/cbGitProject.h" />
 		<Unit filename="src/view/CommitDlgMain.cpp" />
 		<Unit filename="src/view/CommitDlgMain.h" />
 		<Unit filename="src/view/ContextMenuContribution.cpp" />
