@@ -10,7 +10,6 @@ class MenuActionHandler : public wxEvtHandler
     public:
         MenuActionHandler();
         virtual void onActionFired(wxCommandEvent& event) = 0;
-        void onMenuClosed(wxMenuEvent& menuEvent);
         virtual ~MenuActionHandler();
     protected:
     private:

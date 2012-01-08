@@ -1,21 +1,20 @@
 #ifndef COMMITACTIONHANDLER_H
 #define COMMITACTIONHANDLER_H
 
-#include "MenuActionHandler.h"
+#include "FileActionHandler.h"
 
-class ProjectFile;
-class cbProject;
+class cbGitFile;
+class GitModel;
 
-class CommitFileActionHandler : public MenuActionHandler
+class CommitFileActionHandler : public FileActionHandler
 {
     public:
         CommitFileActionHandler();
-        virtual void onActionFired(wxCommandEvent& event);
+        virtual void handleAction(cbGitFile& file, GitModel& gitModel);
         virtual ~CommitFileActionHandler();
     protected:
     private:
-        void commitSelectedFile(ProjectFile* projectFile);
-        void commitAllFiles(const cbProject* project);
+        void commitFile(cbGitFile& file, GitModel& gitModel);
 };
 
 #endif // COMMITACTIONHANDLER_H

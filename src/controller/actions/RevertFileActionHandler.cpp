@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../../model/GitModel.h"
 #include "../../utils/Utils.h"
+#include "../../utils/cbGitFile.h"
 
 using namespace std;
 
@@ -10,23 +11,15 @@ RevertFileActionHandler::RevertFileActionHandler()
     //ctor
 }
 
-void RevertFileActionHandler::onActionFired(wxCommandEvent& event) {
+void RevertFileActionHandler::handleAction(cbGitFile& file, GitModel& gitModel) {
     cout << "Handling revert action" << endl;
-    ProjectFile* selectedFile = getSelectedProjectFile();
-    if (selectedFile == NULL) {
-        return;
-    }
-    cbProject* project = selectedFile->GetParentProject();
-    if (project == NULL) {
-        return;
-    }
-    string workDir = toString(project->GetCommonTopLevelPath());
-    string fileName = toString(selectedFile->relativeFilename);
+
+    string workDir = file.getProjectPath();
+    string fileName = file.getRelativeFileName();
     cout << "File: " << fileName << endl;
     cout << "WorkDir: " << workDir << endl;
-    GitModel gitModel(workDir);
     gitModel.checkoutFile(fileName);
-    selectedFile->SetFileState(fvsVcUpToDate);
+    updateStatus(file);
 }
 
 RevertFileActionHandler::~RevertFileActionHandler()

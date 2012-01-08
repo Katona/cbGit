@@ -1,14 +1,15 @@
 #ifndef REVERTFILEACTIONHANDLER_H
 #define REVERTFILEACTIONHANDLER_H
 
-#include "MenuActionHandler.h"
+#include "FileActionHandler.h"
 
+class GitModel;
 
-class RevertFileActionHandler : public MenuActionHandler
+class RevertFileActionHandler : public FileActionHandler
 {
     public:
         RevertFileActionHandler();
-        void onActionFired(wxCommandEvent& event);
+        void handleAction(cbGitFile& file, GitModel& gitModel);
         virtual ~RevertFileActionHandler();
     protected:
     private:

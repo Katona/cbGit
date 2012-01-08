@@ -62,8 +62,6 @@
 		<Unit filename="src/controller/ProjectFileUpdater.h" />
 		<Unit filename="src/controller/ProjectUpdater.cpp" />
 		<Unit filename="src/controller/ProjectUpdater.h" />
-		<Unit filename="src/controller/actions/AddAction.h" />
-		<Unit filename="src/controller/actions/AddActionHandler.h" />
 		<Unit filename="src/controller/actions/AddFileAction.cpp" />
 		<Unit filename="src/controller/actions/AddFileAction.h" />
 		<Unit filename="src/controller/actions/AddFileActionHandler.cpp" />
@@ -78,6 +76,8 @@
 		<Unit filename="src/controller/actions/CommitProjectActionHandler.h" />
 		<Unit filename="src/controller/actions/FileAction.cpp" />
 		<Unit filename="src/controller/actions/FileAction.h" />
+		<Unit filename="src/controller/actions/FileActionHandler.cpp" />
+		<Unit filename="src/controller/actions/FileActionHandler.h" />
 		<Unit filename="src/controller/actions/MenuAction.cpp" />
 		<Unit filename="src/controller/actions/MenuAction.h" />
 		<Unit filename="src/controller/actions/MenuActionFactory.cpp" />

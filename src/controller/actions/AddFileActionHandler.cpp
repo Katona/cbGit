@@ -9,29 +9,20 @@
 #include "../../model/FileStatuses.h"
 #include "../ProjectFileUpdater.h"
 #include "../../utils/Utils.h"
+#include "../../utils/cbGitFile.h"
 
 AddFileActionHandler::AddFileActionHandler()
 {
     //ctor
 }
 
-void AddFileActionHandler::onActionFired(wxCommandEvent& event) {
-    ProjectFile* f = getSelectedProjectFile();
-    if (f)
-    {
-        string workDir = toString(f->GetParentProject()->GetCommonTopLevelPath());
-        string fileName = toString(f->relativeFilename);
+void AddFileActionHandler::handleAction(cbGitFile& file, GitModel& gitModel) {
+        string workDir = file.getProjectPath();
+        string fileName = file.getRelativeFileName();
 
         GitAddCommand addCommand(workDir, fileName);
         addCommand.execute();
-        GitStatusCommand statusCmd(workDir, fileName);
-        FileStatuses fileStatuses;
-        statusCmd.getFileStatuses(fileStatuses);
-        ProjectFileUpdater fileUpdater;
-        fileUpdater.updateFile((*f), fileStatuses.getStatus(fileName));
-    }
-
-
+        updateStatus(file);
 }
 
 AddFileActionHandler::~AddFileActionHandler()

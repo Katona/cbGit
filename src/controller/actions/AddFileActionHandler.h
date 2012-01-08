@@ -1,17 +1,15 @@
 #ifndef ADDACTIONHANDLER_H
 #define ADDACTIONHANDLER_H
 
-#include "MenuActionHandler.h"
+#include "FileActionHandler.h"
 
-class wxCommandEvent;
-
-class AddFileActionHandler : public MenuActionHandler
+class AddFileActionHandler : public FileActionHandler
 {
     public:
         static AddFileActionHandler INSTANCE;
 
         AddFileActionHandler();
-        virtual void onActionFired(wxCommandEvent& event);
+        virtual void handleAction(cbGitFile& file, GitModel& gitModel);
         virtual ~AddFileActionHandler();
     protected:
     private:
