@@ -2,24 +2,24 @@
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
 #include "../../model/FileStatuses.h"
-#include "../../utils/Utils.h"
+#include "../../utils/cbGitFile.h"
+#include "../../utils/cbGitProject.h"
 
 FileAction::FileAction(const string& actionText, MenuActionHandler* handler,
-                       ProjectFile& projectFile) :
-    MenuAction(actionText, handler), m_projectFile(projectFile)
+                       cbGitFile& file) :
+    MenuAction(actionText, handler), m_file(file)
 {
     //ctor
 }
 
 bool FileAction::isEnabled() const {
-    auto_ptr<GitFileStatus> status = getStatus(m_projectFile);
+    auto_ptr<GitFileStatus> status = getStatus(m_file);
     return status.get() == NULL ? false : enabledFor(*status);
 }
 
-auto_ptr<GitFileStatus> FileAction::getStatus(ProjectFile& projectFile) const {
-    string workDir = toString(
-        projectFile.GetParentProject()->GetCommonTopLevelPath());
-    string fileName = toString(projectFile.relativeFilename);
+auto_ptr<GitFileStatus> FileAction::getStatus(cbGitFile& file) const {
+    string workDir = file.getProjectPath();
+    string fileName = file.getRelativeFileName();
     GitModel gitModel(workDir);
     FileStatuses statuses;
     gitModel.getStatus(statuses, fileName);

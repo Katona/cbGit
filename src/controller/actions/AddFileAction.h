@@ -4,12 +4,12 @@
 #include "FileAction.h"
 #include "../../model/GitFileStatus.h"
 
-class ProjectFile;
+class cbGitFile;
 
 class AddFileAction : public FileAction
 {
     public:
-        AddFileAction(ProjectFile& file);
+        AddFileAction(cbGitFile& file);
         bool enabledFor(const GitFileStatus& gitFileStatus) const;
         virtual ~AddFileAction();
     protected:

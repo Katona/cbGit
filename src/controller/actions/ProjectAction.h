@@ -3,20 +3,20 @@
 
 #include "MenuAction.h"
 
-class cbProject;
+class cbGitProject;
 class MenuActionHandler;
 
 class ProjectAction : public MenuAction
 {
     public:
         ProjectAction(const string& actionText, MenuActionHandler* handler,
-                      cbProject& project);
+                      cbGitProject& project);
         bool isEnabled() const;
         virtual ~ProjectAction();
     protected:
-        virtual bool enabledFor(cbProject& project) const = 0;
+        virtual bool enabledFor(cbGitProject& project) const = 0;
     private:
-        cbProject& m_project;
+        cbGitProject& m_project;
 };
 
 #endif // PROJECTACTION_H

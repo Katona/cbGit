@@ -3,13 +3,18 @@
 
 cbGitFile::cbGitFile(ProjectFile& projectFile) :
     m_projectFile(projectFile),
+    m_projectPath(toString(projectFile.GetParentProject()->GetCommonTopLevelPath())),
     m_relativeFileName(toString(projectFile.relativeFilename))
 {
     //ctor
 }
 
-const string& cbGitFile::getRelativeFileName() {
+const string& cbGitFile::getRelativeFileName() const {
     return m_relativeFileName;
+}
+
+const string& cbGitFile::getProjectPath() const {
+    return m_projectPath;
 }
 
 void cbGitFile::setState(GitFileStatus::FileStatus status) {

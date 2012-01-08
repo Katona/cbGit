@@ -1,7 +1,8 @@
 #include "ProjectAction.h"
+#include "../../utils/cbGitProject.h"
 
 ProjectAction::ProjectAction(const string& actionText, MenuActionHandler* handler,
-                             cbProject& project) :
+                             cbGitProject& project) :
     MenuAction(actionText, handler), m_project(project)
 {
     //ctor

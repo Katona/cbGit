@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <vector>
-#include <cbproject.h>
 
 using namespace std;
 
@@ -11,13 +10,15 @@ class MenuAction;
 class FileAction;
 class ProjectAction;
 class MenuActionSet;
+class cbGitFile;
+class cbGitProject;
 
 class MenuActionFactory
 {
     public:
         static MenuActionFactory& getInstance();
-        auto_ptr<MenuActionSet> getActions(cbProject& project);
-        auto_ptr<MenuActionSet> getActions(ProjectFile& file);
+        auto_ptr<MenuActionSet> getActions(cbGitProject& project);
+        auto_ptr<MenuActionSet> getActions(cbGitFile& file);
         virtual ~MenuActionFactory();
     protected:
     private:

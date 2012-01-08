@@ -4,7 +4,7 @@
 
 MenuActionHandler* RevertFileAction::HANDLER = new RevertFileActionHandler();
 
-RevertFileAction::RevertFileAction(ProjectFile& file) :
+RevertFileAction::RevertFileAction(cbGitFile& file) :
     FileAction("Revert", HANDLER, file)
 {
     //ctor

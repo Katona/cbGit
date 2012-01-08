@@ -20,7 +20,7 @@ class MenuAction
         MenuActionHandler& getHandler() const;
         int getWxEventID() const;
         const string& getText() const;
-        virtual bool isEnabled() const;
+        virtual bool isEnabled() const = 0;
         virtual ~MenuAction();
     protected:
     private:

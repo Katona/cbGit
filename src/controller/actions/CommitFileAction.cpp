@@ -4,7 +4,7 @@
 
 MenuActionHandler* CommitFileAction::HANDLER = new CommitFileActionHandler();
 
-CommitFileAction::CommitFileAction(ProjectFile& file)
+CommitFileAction::CommitFileAction(cbGitFile& file)
     : FileAction("Commit", HANDLER, file)
 {
     //ctor

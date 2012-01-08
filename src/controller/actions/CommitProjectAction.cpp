@@ -5,18 +5,19 @@
 #include "../../model/GitFileStatus.h"
 #include "../../model/FileStatuses.h"
 #include "../../utils/Utils.h"
+#include "../../utils/cbGitProject.h"
 
 MenuActionHandler* CommitProjectAction::HANDLER = new CommitProjectActionHandler();
 
-CommitProjectAction::CommitProjectAction(cbProject& project) :
+CommitProjectAction::CommitProjectAction(cbGitProject& project) :
     ProjectAction("Commit...", HANDLER, project)
 {
     //ctor
 }
 
-bool CommitProjectAction::enabledFor(cbProject& project) const {
+bool CommitProjectAction::enabledFor(cbGitProject& project) const {
 
-    string workDir = toString(project.GetCommonTopLevelPath());
+    string workDir = project.getTopLevelPath();
 
     GitModel gitModel(workDir);
     FileStatuses statuses;

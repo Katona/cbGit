@@ -5,13 +5,15 @@
 #include <manager.h>
 #include <projectmanager.h>
 #include <wx/wx.h>
+#include <cbproject.h>
 
 #include "../model/GitStatusCommand.h"
 #include "../controller/actions/MenuAction.h"
-#include "../utils/Utils.h"
 #include "../controller/actions/MenuActionFactory.h"
 #include "../controller/actions/MenuActionSet.h"
-
+#include "../utils/Utils.h"
+#include "../utils/cbGitFile.h"
+#include "../utils/cbGitProject.h"
 
 ContextMenuContribution::ContextMenuContribution()
 {
@@ -65,11 +67,12 @@ void ContextMenuContribution::expandProjectManagerMenu(
     case FileTreeData::ftdkProject:
     {
 
-        cbProject* project = getSelectedProject(data);
-        if (project != NULL)
+        cbProject* cbProject = getSelectedProject(data);
+        if (cbProject != NULL)
         {
+            cbGitProject cbGitProject(*cbProject);
             auto_ptr<MenuActionSet> actions =
-                MenuActionFactory::getInstance().getActions((*project));
+                MenuActionFactory::getInstance().getActions(cbGitProject);
             addActionsToMenu(menu, *actions);
         }
         break;
@@ -80,8 +83,9 @@ void ContextMenuContribution::expandProjectManagerMenu(
         ProjectFile* selectedFile = getSelectedProjectFile(data);
         if (selectedFile != NULL)
         {
+            cbGitFile file(*selectedFile);
             auto_ptr<MenuActionSet> actions =
-                MenuActionFactory::getInstance().getActions((*selectedFile));
+                MenuActionFactory::getInstance().getActions(file);
             addActionsToMenu(menu, *actions);
         }
 

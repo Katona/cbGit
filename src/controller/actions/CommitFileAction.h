@@ -7,7 +7,7 @@
 class CommitFileAction : public FileAction
 {
     public:
-        CommitFileAction(ProjectFile& file);
+        CommitFileAction(cbGitFile& file);
         virtual bool enabledFor(const GitFileStatus& status) const;
         virtual ~CommitFileAction();
     protected:

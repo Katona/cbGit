@@ -2,24 +2,24 @@
 #define FILEACTION_H
 
 #include <memory>
-#include <cbproject.h>
 #include "MenuAction.h"
 
 using namespace std;
+
+class cbGitFile;
 
 class FileAction : public MenuAction
 {
     public:
         FileAction(const string& actionText, MenuActionHandler* handler,
-                   ProjectFile& projectFile);
-//        virtual bool enabledFor(ProjectFile& projectFile) const;
+                   cbGitFile& file);
         bool isEnabled() const;
         virtual ~FileAction();
     protected:
         virtual bool enabledFor(const GitFileStatus& status) const = 0;
     private:
-        ProjectFile& m_projectFile;
-        auto_ptr<GitFileStatus> getStatus(ProjectFile& projectFile) const;
+        cbGitFile& m_file;
+        auto_ptr<GitFileStatus> getStatus(cbGitFile& projectFile) const;
 };
 
 #endif // FILEACTION_H

@@ -5,7 +5,7 @@
 
 MenuActionHandler* AddFileAction::HANDLER = new AddFileActionHandler();
 
-AddFileAction::AddFileAction(ProjectFile& file) :
+AddFileAction::AddFileAction(cbGitFile& file) :
     FileAction("Add", HANDLER, file)
 {
     //ctor

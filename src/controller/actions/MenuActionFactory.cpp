@@ -27,16 +27,16 @@ MenuActionFactory::MenuActionFactory()
 //    m_projectActions.push_back(new CommitProjectAction());
 }
 
-auto_ptr<MenuActionSet> MenuActionFactory::getActions(ProjectFile& projectFile) {
+auto_ptr<MenuActionSet> MenuActionFactory::getActions(cbGitFile& file) {
     auto_ptr<MenuActionSet> result(new MenuActionSet());
-    result->addAction(new AddFileAction(projectFile));
-    result->addAction(new CommitFileAction(projectFile));
-    result->addAction(new RevertFileAction(projectFile));
+    result->addAction(new AddFileAction(file));
+    result->addAction(new CommitFileAction(file));
+    result->addAction(new RevertFileAction(file));
 
     return result;
 }
 
-auto_ptr<MenuActionSet> MenuActionFactory::getActions(cbProject& project) {
+auto_ptr<MenuActionSet> MenuActionFactory::getActions(cbGitProject& project) {
     auto_ptr<MenuActionSet> result(new MenuActionSet());
 
     result->addAction(new CommitProjectAction(project));

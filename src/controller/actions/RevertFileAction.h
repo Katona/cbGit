@@ -1,15 +1,15 @@
 #ifndef REVERTFILEACTION_H
 #define REVERTFILEACTION_H
 
-#include <cbproject.h>
 #include "FileAction.h"
 
 class GitFileStatus;
+class cbGitFile;
 
 class RevertFileAction : public FileAction
 {
     public:
-        RevertFileAction(ProjectFile& file);
+        RevertFileAction(cbGitFile& file);
         bool enabledFor(const GitFileStatus& status) const;
         virtual ~RevertFileAction();
     protected:

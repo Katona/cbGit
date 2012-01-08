@@ -20,10 +20,6 @@ const string& MenuAction::getText() const {
     return m_actionText;
 }
 
-bool MenuAction::isEnabled() const {
-    return false;
-}
-
 MenuAction::~MenuAction() {
 //    if (m_handler != 0) {
 //        delete m_handler;
