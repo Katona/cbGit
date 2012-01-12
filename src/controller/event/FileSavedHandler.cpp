@@ -9,29 +9,13 @@
 
 using namespace std;
 
-FileSavedHandler::FileSavedHandler() :
-    AbstractEventHandler(cbEVT_EDITOR_SAVE)
+FileSavedHandler::FileSavedHandler()
 {
     //ctor
 }
 
-void FileSavedHandler::handleEvent(CodeBlocksEvent& event) {
-    cout << "Handle file save event " << endl;
-    cbEditor* editor = dynamic_cast<cbEditor*> (event.GetEditor());
-    if (editor == NULL) {
-        return;
-    }
-    ProjectFile* file = editor->GetProjectFile();
-    if (file == NULL) {
-        return;
-    }
-    string fileName = toString(file->relativeFilename);
-    string workDir = toString(file->GetParentProject()->GetCommonTopLevelPath());
-    FileStatuses statuses;
-    GitModel model(workDir);
-    model.getStatus(statuses, fileName);
-    ProjectFileUpdater updater;
-    updater.updateFile(*file, statuses.getStatus(fileName));
+void FileSavedHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
+    updateStatus(file);
 }
 
 FileSavedHandler::~FileSavedHandler()

@@ -4,19 +4,14 @@
 
 using namespace std;
 
-ProjectOpenedHandler::ProjectOpenedHandler() :
-    AbstractEventHandler(cbEVT_PROJECT_OPEN)
+ProjectOpenedHandler::ProjectOpenedHandler()
 {
     //ctor
 }
 
-void ProjectOpenedHandler::handleEvent(CodeBlocksEvent& event) {
+void ProjectOpenedHandler::handleEvent(cbGitProject& project, GitModel& model) {
     cout << "ProjectOPened" << endl;
-    cbProject* project = event.GetProject();
-    ProjectUpdater projUpdater;
-    vector<cbProject*> projects;
-    projects.push_back(project);
-    projUpdater.updateProjects(projects);
+    updateStatus(project);
 }
 
 ProjectOpenedHandler::~ProjectOpenedHandler()

@@ -2,17 +2,16 @@
 #define PROJECTOPENEDHANDLER_H
 
 #include <vector>
-#include <sdk.h>
 
-#include "AbstractEventHandler.h"
-
+#include "ProjectEventHandler.h"
 
 
-class ProjectOpenedHandler : public AbstractEventHandler
+
+class ProjectOpenedHandler : public ProjectEventHandler
 {
     public:
         ProjectOpenedHandler();
-        virtual void handleEvent(CodeBlocksEvent& event);
+        void handleEvent(cbGitProject& project, GitModel& model);
         virtual ~ProjectOpenedHandler();
     protected:
     private:

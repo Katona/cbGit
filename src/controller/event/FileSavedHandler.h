@@ -1,14 +1,14 @@
 #ifndef FILESAVEDHANDLER_H
 #define FILESAVEDHANDLER_H
 
-#include "AbstractEventHandler.h"
+#include "FileEventHandler.h"
 
 
-class FileSavedHandler : public AbstractEventHandler
+class FileSavedHandler : public FileEventHandler
 {
     public:
         FileSavedHandler();
-        void handleEvent(CodeBlocksEvent& event);
+        void handleEvent(cbGitFile& file, GitModel& gitModel);
         virtual ~FileSavedHandler();
     protected:
     private:

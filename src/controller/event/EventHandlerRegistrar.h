@@ -2,12 +2,12 @@
 #define EVENTHANDLERREGISTRAR_H
 
 #include <vector>
-
-#include "AbstractEventHandler.h"
+#include <manager.h>
 
 using namespace std;
 
 class Manager;
+class EventHandler;
 
 class EventHandlerRegistrar
 {
@@ -18,7 +18,10 @@ class EventHandlerRegistrar
         virtual ~EventHandlerRegistrar();
     protected:
     private:
-        vector<AbstractEventHandler*> m_handlers;
+        vector<EventHandler*> m_registeredHandlers;
+
+        void registerHandler(Manager& manager, wxEventType eventType,
+                             EventHandler* handler);
 };
 
 #endif // EVENTHANDLERREGISTRAR_H
