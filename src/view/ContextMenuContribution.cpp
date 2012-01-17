@@ -11,6 +11,7 @@
 #include "../controller/actions/MenuAction.h"
 #include "../controller/actions/MenuActionFactory.h"
 #include "../controller/actions/MenuActionSet.h"
+#include "../controller/event/EventHandler.h"
 #include "../utils/Utils.h"
 #include "../utils/cbGitFile.h"
 #include "../utils/cbGitProject.h"
@@ -110,7 +111,7 @@ void ContextMenuContribution::addActionsToMenu(
         menuItem->Enable(currAction.isEnabled());
         menu->Connect(currAction.getWxEventID(),
                       wxEVT_COMMAND_MENU_SELECTED,
-                      wxCommandEventHandler(MenuActionHandler::onActionFired),
+                      wxCommandEventHandler(EventHandler::handleEvent),
                       NULL,
                       &currAction.getHandler());
     }

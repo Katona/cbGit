@@ -15,7 +15,7 @@ CommitFileActionHandler::CommitFileActionHandler()
     //ctor
 }
 
-void CommitFileActionHandler::handleAction(cbGitFile& file, GitModel& gitModel) {
+void CommitFileActionHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
     CommitDlgDialog commitDlg(0);
     if (commitDlg.ShowModal() == wxID_OK) {
         commitFile(file, gitModel);

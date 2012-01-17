@@ -14,7 +14,7 @@ class RevertFileAction : public FileAction
         virtual ~RevertFileAction();
     protected:
     private:
-        static MenuActionHandler* HANDLER;
+        static EventHandler* HANDLER;
 };
 
 #endif // REVERTFILEACTION_H

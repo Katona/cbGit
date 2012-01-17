@@ -1,17 +1,17 @@
 #ifndef REVERTFILEACTIONHANDLER_H
 #define REVERTFILEACTIONHANDLER_H
 
-#include "FileActionHandler.h"
+#include "../event/FileEventHandler.h"
 
 class GitModel;
 
-class RevertFileActionHandler : public FileActionHandler
+class RevertFileActionHandler : public FileEventHandler
 {
     public:
         RevertFileActionHandler();
-        void handleAction(cbGitFile& file, GitModel& gitModel);
         virtual ~RevertFileActionHandler();
     protected:
+        void handleEvent(cbGitFile& file, GitModel& gitModel);
     private:
 };
 

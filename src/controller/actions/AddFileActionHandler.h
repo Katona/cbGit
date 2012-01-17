@@ -1,17 +1,17 @@
 #ifndef ADDACTIONHANDLER_H
 #define ADDACTIONHANDLER_H
 
-#include "FileActionHandler.h"
+#include "../event/FileEventHandler.h"
 
-class AddFileActionHandler : public FileActionHandler
+class AddFileActionHandler : public FileEventHandler
 {
     public:
         static AddFileActionHandler INSTANCE;
 
         AddFileActionHandler();
-        virtual void handleAction(cbGitFile& file, GitModel& gitModel);
         virtual ~AddFileActionHandler();
     protected:
+        virtual void handleEvent(cbGitFile& file, GitModel& model);
     private:
 
 

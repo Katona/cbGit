@@ -1,10 +1,12 @@
 #ifndef EVENTHANDLER_H
 #define EVENTHANDLER_H
 
+#include <wx/wx.h>
+
 class wxCommandEvent;
 class CodeBlocksEvent;
 
-class EventHandler
+class EventHandler : public wxEvtHandler
 {
     public:
         EventHandler();

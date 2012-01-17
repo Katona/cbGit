@@ -12,7 +12,7 @@ class CommitFileAction : public FileAction
         virtual ~CommitFileAction();
     protected:
     private:
-        static MenuActionHandler* HANDLER;
+        static EventHandler* HANDLER;
 };
 
 #endif // COMMITFILEACTION_H

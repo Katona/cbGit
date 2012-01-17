@@ -16,7 +16,7 @@ AddFileActionHandler::AddFileActionHandler()
     //ctor
 }
 
-void AddFileActionHandler::handleAction(cbGitFile& file, GitModel& gitModel) {
+void AddFileActionHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
         string workDir = file.getProjectPath();
         string fileName = file.getRelativeFileName();
 

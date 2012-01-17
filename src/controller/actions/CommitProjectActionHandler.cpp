@@ -5,25 +5,22 @@
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
 #include "../../utils/Utils.h"
+#include "../../utils/cbGitProject.h"
 #include "../../view/CommitDlgMain.h"
-#include "../../controller/ProjectUpdater.h"
 
 CommitProjectActionHandler::CommitProjectActionHandler()
 {
     //ctor
 }
 
-void CommitProjectActionHandler::onActionFired(wxCommandEvent& event) {
+void CommitProjectActionHandler::handleEvent(cbGitProject& project, GitModel& model) {
     cout << "Commiting project" << endl;
     CommitDlgDialog commitDialog(0);
     if (commitDialog.ShowModal() == wxID_OK) {
-        cbProject* selectedProj = getSelectedProject();
-        string workDir = toString(selectedProj->GetCommonTopLevelPath());
         string commitMsg = toString(commitDialog.getCommitMessage());
-        GitModel gitModel(workDir);
+        GitModel gitModel(project.getTopLevelPath());
         gitModel.commitAll(commitMsg);
-        ProjectUpdater projUpdater;
-        projUpdater.updateProject(*selectedProj);
+        updateStatus(project);
     }
 }
 

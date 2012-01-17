@@ -2,7 +2,7 @@
 #include "RevertFileActionHandler.h"
 #include "../../model/GitFileStatus.h"
 
-MenuActionHandler* RevertFileAction::HANDLER = new RevertFileActionHandler();
+EventHandler* RevertFileAction::HANDLER = new RevertFileActionHandler();
 
 RevertFileAction::RevertFileAction(cbGitFile& file) :
     FileAction("Revert", HANDLER, file)

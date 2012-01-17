@@ -12,7 +12,7 @@ class CommitProjectAction : public ProjectAction
         virtual ~CommitProjectAction();
     protected:
     private:
-        static MenuActionHandler* HANDLER;
+        static EventHandler* HANDLER;
         bool enabledFor(cbGitProject& project) const;
 };
 

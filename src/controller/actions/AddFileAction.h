@@ -5,6 +5,7 @@
 #include "../../model/GitFileStatus.h"
 
 class cbGitFile;
+class FileEventHandler;
 
 class AddFileAction : public FileAction
 {
@@ -14,7 +15,7 @@ class AddFileAction : public FileAction
         virtual ~AddFileAction();
     protected:
     private:
-        static MenuActionHandler* HANDLER;
+        static FileEventHandler* HANDLER;
         GitFileStatus m_fileStatus;
 };
 

@@ -5,19 +5,18 @@
 #include <vector>
 #include <cbproject.h>
 
-#include "MenuActionHandler.h"
+#include "../event/EventHandler.h"
 
 
 using namespace std;
 
-class MenuActionHandler;
 class GitFileStatus;
 
 class MenuAction
 {
     public:
-        MenuAction(const string& actionText, MenuActionHandler* handler);
-        MenuActionHandler& getHandler() const;
+        MenuAction(const string& actionText, EventHandler* handler);
+        EventHandler& getHandler() const;
         int getWxEventID() const;
         const string& getText() const;
         virtual bool isEnabled() const = 0;
@@ -26,7 +25,7 @@ class MenuAction
     private:
 
         const string m_actionText;
-        MenuActionHandler* m_handler;
+        EventHandler* m_handler;
         const int m_wxEventID;
 };
 

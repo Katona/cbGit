@@ -2,7 +2,7 @@
 #include "../../model/GitFileStatus.h"
 #include "CommitFileActionHandler.h"
 
-MenuActionHandler* CommitFileAction::HANDLER = new CommitFileActionHandler();
+EventHandler* CommitFileAction::HANDLER = new CommitFileActionHandler();
 
 CommitFileAction::CommitFileAction(cbGitFile& file)
     : FileAction("Commit", HANDLER, file)

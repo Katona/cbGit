@@ -11,7 +11,7 @@ class cbGitFile;
 class FileAction : public MenuAction
 {
     public:
-        FileAction(const string& actionText, MenuActionHandler* handler,
+        FileAction(const string& actionText, EventHandler* handler,
                    cbGitFile& file);
         bool isEnabled() const;
         virtual ~FileAction();

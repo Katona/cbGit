@@ -2,18 +2,18 @@
 #define COMMITPROJECTACTIONHANDLER_H
 
 #include <string>
-#include "MenuActionHandler.h"
+#include "../event/ProjectEventHandler.h"
 
 using namespace std;
 
 
-class CommitProjectActionHandler : public MenuActionHandler
+class CommitProjectActionHandler : public ProjectEventHandler
 {
     public:
         CommitProjectActionHandler();
-        virtual void onActionFired(wxCommandEvent& event);
         virtual ~CommitProjectActionHandler();
     protected:
+        virtual void handleEvent(cbGitProject& project, GitModel& model);
     private:
         void stageNecessaryFiles(const string& workDir);
 };

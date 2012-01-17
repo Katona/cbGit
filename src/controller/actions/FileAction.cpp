@@ -5,7 +5,7 @@
 #include "../../utils/cbGitFile.h"
 #include "../../utils/cbGitProject.h"
 
-FileAction::FileAction(const string& actionText, MenuActionHandler* handler,
+FileAction::FileAction(const string& actionText, EventHandler* handler,
                        cbGitFile& file) :
     MenuAction(actionText, handler), m_file(file)
 {

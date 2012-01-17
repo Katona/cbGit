@@ -3,12 +3,12 @@
 #include "../../model/GitFileStatus.h"
 #include "CommitFileActionHandler.h"
 
-MenuAction::MenuAction(const string& actionText, MenuActionHandler* handler) :
+MenuAction::MenuAction(const string& actionText, EventHandler* handler) :
         m_actionText(actionText), m_handler(handler), m_wxEventID(wxNewId()) {
 
 }
 
-MenuActionHandler& MenuAction::getHandler() const {
+EventHandler& MenuAction::getHandler() const {
     return (*m_handler);
 }
 

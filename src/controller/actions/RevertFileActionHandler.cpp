@@ -11,7 +11,7 @@ RevertFileActionHandler::RevertFileActionHandler()
     //ctor
 }
 
-void RevertFileActionHandler::handleAction(cbGitFile& file, GitModel& gitModel) {
+void RevertFileActionHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
     cout << "Handling revert action" << endl;
 
     string workDir = file.getProjectPath();

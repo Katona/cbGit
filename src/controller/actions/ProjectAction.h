@@ -9,7 +9,7 @@ class MenuActionHandler;
 class ProjectAction : public MenuAction
 {
     public:
-        ProjectAction(const string& actionText, MenuActionHandler* handler,
+        ProjectAction(const string& actionText, EventHandler* handler,
                       cbGitProject& project);
         bool isEnabled() const;
         virtual ~ProjectAction();

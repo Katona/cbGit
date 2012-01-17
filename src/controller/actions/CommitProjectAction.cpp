@@ -7,7 +7,7 @@
 #include "../../utils/Utils.h"
 #include "../../utils/cbGitProject.h"
 
-MenuActionHandler* CommitProjectAction::HANDLER = new CommitProjectActionHandler();
+EventHandler* CommitProjectAction::HANDLER = new CommitProjectActionHandler();
 
 CommitProjectAction::CommitProjectAction(cbGitProject& project) :
     ProjectAction("Commit...", HANDLER, project)

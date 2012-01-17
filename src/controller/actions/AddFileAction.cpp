@@ -3,7 +3,7 @@
 #include "AddFileAction.h"
 #include "AddFileActionHandler.h"
 
-MenuActionHandler* AddFileAction::HANDLER = new AddFileActionHandler();
+FileEventHandler* AddFileAction::HANDLER = new AddFileActionHandler();
 
 AddFileAction::AddFileAction(cbGitFile& file) :
     FileAction("Add", HANDLER, file)
