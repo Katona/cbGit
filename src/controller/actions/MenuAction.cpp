@@ -1,7 +1,7 @@
 #include "MenuAction.h"
-#include "AddFileActionHandler.h"
+#include "../handlers/AddFileHandler.h"
 #include "../../model/GitFileStatus.h"
-#include "CommitFileActionHandler.h"
+#include "../handlers/CommitFileHandler.h"
 
 MenuAction::MenuAction(const string& actionText, EventHandler* handler) :
         m_actionText(actionText), m_handler(handler), m_wxEventID(wxNewId()) {

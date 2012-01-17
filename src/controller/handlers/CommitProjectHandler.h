@@ -2,16 +2,16 @@
 #define COMMITPROJECTACTIONHANDLER_H
 
 #include <string>
-#include "../event/ProjectEventHandler.h"
+#include "ProjectEventHandler.h"
 
 using namespace std;
 
 
-class CommitProjectActionHandler : public ProjectEventHandler
+class CommitProjectHandler : public ProjectEventHandler
 {
     public:
-        CommitProjectActionHandler();
-        virtual ~CommitProjectActionHandler();
+        CommitProjectHandler();
+        virtual ~CommitProjectHandler();
     protected:
         virtual void handleEvent(cbGitProject& project, GitModel& model);
     private:

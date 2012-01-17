@@ -1,19 +1,19 @@
 #ifndef COMMITACTIONHANDLER_H
 #define COMMITACTIONHANDLER_H
 
-#include "../event/FileEventHandler.h"
+#include "FileEventHandler.h"
 
 class cbGitFile;
 class GitModel;
 
-class CommitFileActionHandler : public FileEventHandler
+class CommitFileHandler : public FileEventHandler
 {
     public:
-        static CommitFileActionHandler INSTANCE;
+        static CommitFileHandler INSTANCE;
 
-        CommitFileActionHandler();
+        CommitFileHandler();
 
-        virtual ~CommitFileActionHandler();
+        virtual ~CommitFileHandler();
     protected:
         virtual void handleEvent(cbGitFile& file, GitModel& gitModel);
     private:

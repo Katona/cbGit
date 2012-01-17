@@ -1,14 +1,12 @@
 #include "MenuActionFactory.h"
 #include <string>
-#include "AddFileAction.h"
-#include "AddFileActionHandler.h"
-#include "CommitFileActionHandler.h"
-#include "RevertFileActionHandler.h"
+#include "../handlers/AddFileHandler.h"
+#include "../handlers/CommitFileHandler.h"
+#include "../handlers/RevertFileHandler.h"
 #include "ProjectAction.h"
-#include "CommitFileAction.h"
 #include "CommitProjectAction.h"
-#include "RevertFileAction.h"
 #include "MenuActionSet.h"
+#include "FileAction.h"
 #include "../../model/GitStatusCommand.h"
 #include "../../utils/Utils.h"
 #include "../../utils/cbGitFile.h"
@@ -24,24 +22,19 @@ MenuActionFactory& MenuActionFactory::getInstance() {
 
 MenuActionFactory::MenuActionFactory()
 {
-//    m_fileActions.push_back(new AddFileAction());
-//    m_fileActions.push_back(new CommitFileAction());
-//    m_fileActions.push_back(new RevertFileAction());
-
-//    m_projectActions.push_back(new CommitProjectAction());
 }
 
 auto_ptr<MenuActionSet> MenuActionFactory::getActions(cbGitFile& file) {
     auto_ptr<MenuActionSet> result(new MenuActionSet());
     result->addAction(
-            createFileAction("Add", AddFileActionHandler::INSTANCE, file)
+            createFileAction("Add", AddFileHandler::INSTANCE, file)
                       .addValidStatus(GitFileStatus::untracked));
     result->addAction(
-            createFileAction("Commit ...", CommitFileActionHandler::INSTANCE, file)
+            createFileAction("Commit ...", CommitFileHandler::INSTANCE, file)
                       .addValidStatus(GitFileStatus::modified)
                       .addValidStatus(GitFileStatus::added));
     result->addAction(
-            createFileAction("Revert", RevertFileActionHandler::INSTANCE, file)
+            createFileAction("Revert", RevertFileHandler::INSTANCE, file)
                       .addValidStatus(GitFileStatus::modified)
                       .addValidStatus(GitFileStatus::added));
 

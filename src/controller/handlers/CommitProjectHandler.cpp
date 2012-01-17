@@ -1,4 +1,4 @@
-#include "CommitProjectActionHandler.h"
+#include "CommitProjectHandler.h"
 
 #include <iostream>
 
@@ -8,12 +8,12 @@
 #include "../../utils/cbGitProject.h"
 #include "../../view/CommitDlgMain.h"
 
-CommitProjectActionHandler::CommitProjectActionHandler()
+CommitProjectHandler::CommitProjectHandler()
 {
     //ctor
 }
 
-void CommitProjectActionHandler::handleEvent(cbGitProject& project, GitModel& model) {
+void CommitProjectHandler::handleEvent(cbGitProject& project, GitModel& model) {
     cout << "Commiting project" << endl;
     CommitDlgDialog commitDialog(0);
     if (commitDialog.ShowModal() == wxID_OK) {
@@ -24,7 +24,7 @@ void CommitProjectActionHandler::handleEvent(cbGitProject& project, GitModel& mo
     }
 }
 
-CommitProjectActionHandler::~CommitProjectActionHandler()
+CommitProjectHandler::~CommitProjectHandler()
 {
     //dtor
 }

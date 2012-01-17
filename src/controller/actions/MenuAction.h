@@ -5,7 +5,7 @@
 #include <vector>
 #include <cbproject.h>
 
-#include "../event/EventHandler.h"
+#include "../handlers/EventHandler.h"
 
 
 using namespace std;

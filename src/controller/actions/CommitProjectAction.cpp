@@ -1,13 +1,13 @@
 #include "CommitProjectAction.h"
-#include "CommitFileActionHandler.h"
-#include "CommitProjectActionHandler.h"
+#include "../handlers/CommitFileHandler.h"
+#include "../handlers/CommitProjectHandler.h"
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
 #include "../../model/FileStatuses.h"
 #include "../../utils/Utils.h"
 #include "../../utils/cbGitProject.h"
 
-EventHandler* CommitProjectAction::HANDLER = new CommitProjectActionHandler();
+EventHandler* CommitProjectAction::HANDLER = new CommitProjectHandler();
 
 CommitProjectAction::CommitProjectAction(cbGitProject& project) :
     ProjectAction("Commit...", HANDLER, project)

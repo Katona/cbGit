@@ -1,7 +1,6 @@
 #include "FileSavedHandler.h"
 #include <iostream>
 #include <cbeditor.h>
-#include "../ProjectFileUpdater.h"
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
 #include "../../model/FileStatuses.h"

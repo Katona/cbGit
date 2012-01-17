@@ -1,6 +1,5 @@
 #include <iostream>
 #include "ProjectOpenedHandler.h"
-#include "../ProjectUpdater.h"
 
 using namespace std;
 

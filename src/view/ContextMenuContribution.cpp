@@ -11,7 +11,7 @@
 #include "../controller/actions/MenuAction.h"
 #include "../controller/actions/MenuActionFactory.h"
 #include "../controller/actions/MenuActionSet.h"
-#include "../controller/event/EventHandler.h"
+#include "../controller/handlers/EventHandler.h"
 #include "../utils/Utils.h"
 #include "../utils/cbGitFile.h"
 #include "../utils/cbGitProject.h"

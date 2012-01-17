@@ -19,7 +19,7 @@
 
 #include <cbplugin.h> // for "class cbPlugin"
 
-#include "controller/event/EventHandlerRegistrar.h"
+#include "controller/handlers/EventHandlerRegistrar.h"
 
 class cbGit : public cbPlugin
 {

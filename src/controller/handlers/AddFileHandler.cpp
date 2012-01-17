@@ -3,23 +3,22 @@
 #include <projectmanager.h>
 #include <cbproject.h>
 
-#include "AddFileActionHandler.h"
+#include "AddFileHandler.h"
 #include "../../model/GitAddCommand.h"
 #include "../../model/GitStatusCommand.h"
 #include "../../model/FileStatuses.h"
-#include "../ProjectFileUpdater.h"
 #include "../../utils/Utils.h"
 #include "../../utils/cbGitFile.h"
 
 
-AddFileActionHandler AddFileActionHandler::INSTANCE;
+AddFileHandler AddFileHandler::INSTANCE;
 
-AddFileActionHandler::AddFileActionHandler()
+AddFileHandler::AddFileHandler()
 {
     //ctor
 }
 
-void AddFileActionHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
+void AddFileHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
         string workDir = file.getProjectPath();
         string fileName = file.getRelativeFileName();
 
@@ -28,7 +27,7 @@ void AddFileActionHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
         updateStatus(file);
 }
 
-AddFileActionHandler::~AddFileActionHandler()
+AddFileHandler::~AddFileHandler()
 {
     //dtor
 }

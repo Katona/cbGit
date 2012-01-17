@@ -1,4 +1,4 @@
-#include "CommitFileActionHandler.h"
+#include "CommitFileHandler.h"
 
 #include <vector>
 #include "../../model/GitFileStatus.h"
@@ -10,21 +10,21 @@
 
 using namespace std;
 
-CommitFileActionHandler CommitFileActionHandler::INSTANCE;
+CommitFileHandler CommitFileHandler::INSTANCE;
 
-CommitFileActionHandler::CommitFileActionHandler()
+CommitFileHandler::CommitFileHandler()
 {
     //ctor
 }
 
-void CommitFileActionHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
+void CommitFileHandler::handleEvent(cbGitFile& file, GitModel& gitModel) {
     CommitDlgDialog commitDlg(0);
     if (commitDlg.ShowModal() == wxID_OK) {
         commitFile(file, gitModel);
     }
 }
 
-void CommitFileActionHandler::commitFile(cbGitFile& file, GitModel& gitModel) {
+void CommitFileHandler::commitFile(cbGitFile& file, GitModel& gitModel) {
 
     CommitDlgDialog commitDlg(0);
     if (commitDlg.ShowModal() == wxID_OK) {
@@ -38,7 +38,7 @@ void CommitFileActionHandler::commitFile(cbGitFile& file, GitModel& gitModel) {
     }
 }
 
-CommitFileActionHandler::~CommitFileActionHandler()
+CommitFileHandler::~CommitFileHandler()
 {
     //dtor
 }
