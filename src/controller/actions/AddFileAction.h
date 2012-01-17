@@ -11,9 +11,7 @@ class AddFileAction : public FileAction
 {
     public:
         AddFileAction(cbGitFile& file);
-        bool enabledFor(const GitFileStatus& gitFileStatus) const;
         virtual ~AddFileAction();
-    protected:
     private:
         static FileEventHandler* HANDLER;
         GitFileStatus m_fileStatus;

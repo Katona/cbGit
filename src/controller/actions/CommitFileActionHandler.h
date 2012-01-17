@@ -9,6 +9,8 @@ class GitModel;
 class CommitFileActionHandler : public FileEventHandler
 {
     public:
+        static CommitFileActionHandler INSTANCE;
+
         CommitFileActionHandler();
 
         virtual ~CommitFileActionHandler();

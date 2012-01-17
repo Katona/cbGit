@@ -6,8 +6,8 @@ MenuActionSet::MenuActionSet()
     //ctor
 }
 
-void MenuActionSet::addAction(MenuAction* action) {
-    m_actions.push_back(action);
+void MenuActionSet::addAction(MenuAction& action) {
+    m_actions.push_back(&action);
 }
 
 const MenuAction& MenuActionSet::operator[](int index) const {

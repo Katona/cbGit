@@ -10,6 +10,8 @@
 
 using namespace std;
 
+CommitFileActionHandler CommitFileActionHandler::INSTANCE;
+
 CommitFileActionHandler::CommitFileActionHandler()
 {
     //ctor

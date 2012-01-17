@@ -6,6 +6,8 @@
 
 using namespace std;
 
+RevertFileActionHandler RevertFileActionHandler::INSTANCE;
+
 RevertFileActionHandler::RevertFileActionHandler()
 {
     //ctor

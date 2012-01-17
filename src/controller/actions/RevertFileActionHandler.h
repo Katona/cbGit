@@ -8,6 +8,7 @@ class GitModel;
 class RevertFileActionHandler : public FileEventHandler
 {
     public:
+        static RevertFileActionHandler INSTANCE;
         RevertFileActionHandler();
         virtual ~RevertFileActionHandler();
     protected:

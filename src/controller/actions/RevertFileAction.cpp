@@ -7,12 +7,8 @@ EventHandler* RevertFileAction::HANDLER = new RevertFileActionHandler();
 RevertFileAction::RevertFileAction(cbGitFile& file) :
     FileAction("Revert", HANDLER, file)
 {
-    //ctor
-}
-
-bool RevertFileAction::enabledFor(const GitFileStatus& status) const{
-    return ((status.getStatus() == GitFileStatus::modified) ||
-            (status.getStatus() == GitFileStatus::added));
+    addValidStatus(GitFileStatus::modified);
+    addValidStatus(GitFileStatus::added);
 }
 
 RevertFileAction::~RevertFileAction()

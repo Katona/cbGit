@@ -9,7 +9,7 @@ using namespace std;
 class GitFileStatus
 {
     public:
-        enum FileStatus { none, modified, added, untracked };
+        enum FileStatus { none = 1, modified = 2, added = 4, untracked = 8};
         GitFileStatus();
         GitFileStatus(const string& fileName, FileStatus stagingStatus,
                       FileStatus workTreeStatus);

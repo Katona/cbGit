@@ -8,12 +8,7 @@ FileEventHandler* AddFileAction::HANDLER = new AddFileActionHandler();
 AddFileAction::AddFileAction(cbGitFile& file) :
     FileAction("Add", HANDLER, file)
 {
-    //ctor
-}
-
-bool AddFileAction::enabledFor(const GitFileStatus& gitFileStatus) const
-{
-    return gitFileStatus.getStatus() == GitFileStatus::untracked;
+   addValidStatus(GitFileStatus::untracked);
 }
 
 AddFileAction::~AddFileAction()

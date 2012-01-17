@@ -25,9 +25,9 @@ GitFileStatus::FileStatus GitFileStatus::getWorkTreeStatus() const {
 
 GitFileStatus::FileStatus GitFileStatus::getStatus() const {
     FileStatus result = none;
-    if (m_workTreeStatus != 0) {
+    if (m_workTreeStatus != none) {
         result = m_workTreeStatus;
-    } else if (m_stagingStatus != 0) {
+    } else if (m_stagingStatus != none) {
         result = m_stagingStatus;
     }
     return result;

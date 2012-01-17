@@ -11,7 +11,7 @@ class MenuActionSet
 {
     public:
         MenuActionSet();
-        void addAction(MenuAction* action);
+        void addAction(MenuAction& action);
         const MenuAction& operator[](int index) const;
         int size() const;
         virtual ~MenuActionSet();

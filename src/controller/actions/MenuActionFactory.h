@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ class ProjectAction;
 class MenuActionSet;
 class cbGitFile;
 class cbGitProject;
+class EventHandler;
 
 class MenuActionFactory
 {
@@ -32,6 +34,9 @@ class MenuActionFactory
         MenuActionFactory();
         MenuActionFactory(MenuActionFactory const&);
         void operator=(MenuActionFactory const&);
+        FileAction& createFileAction(const string& text,
+                                     EventHandler& handler,
+                                     cbGitFile& file);
 };
 
 #endif // MENUACTIONFACTORY_H

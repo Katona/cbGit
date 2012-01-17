@@ -10,7 +10,6 @@ class RevertFileAction : public FileAction
 {
     public:
         RevertFileAction(cbGitFile& file);
-        bool enabledFor(const GitFileStatus& status) const;
         virtual ~RevertFileAction();
     protected:
     private:

@@ -17,6 +17,10 @@ bool FileAction::isEnabled() const {
     return status.get() == NULL ? false : enabledFor(*status);
 }
 
+FileAction& FileAction::addValidStatus(GitFileStatus::FileStatus statusFlag) {
+    m_validStatuses |= statusFlag;
+}
+
 auto_ptr<GitFileStatus> FileAction::getStatus(cbGitFile& file) const {
     string workDir = file.getProjectPath();
     string fileName = file.getRelativeFileName();
@@ -28,6 +32,10 @@ auto_ptr<GitFileStatus> FileAction::getStatus(cbGitFile& file) const {
         result.reset(new GitFileStatus(statuses.getStatus(fileName)));
     }
     return result;
+}
+
+bool FileAction::enabledFor(const GitFileStatus& status) const {
+    return (m_validStatuses & status.getStatus()) > 0;
 }
 
 FileAction::~FileAction()

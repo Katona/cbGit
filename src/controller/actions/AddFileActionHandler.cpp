@@ -11,6 +11,9 @@
 #include "../../utils/Utils.h"
 #include "../../utils/cbGitFile.h"
 
+
+AddFileActionHandler AddFileActionHandler::INSTANCE;
+
 AddFileActionHandler::AddFileActionHandler()
 {
     //ctor

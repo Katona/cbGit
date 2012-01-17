@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "MenuAction.h"
+#include "../../model/GitFileStatus.h"
 
 using namespace std;
 
@@ -13,13 +14,16 @@ class FileAction : public MenuAction
     public:
         FileAction(const string& actionText, EventHandler* handler,
                    cbGitFile& file);
+        FileAction& addValidStatus(GitFileStatus::FileStatus statusFlag);
         bool isEnabled() const;
         virtual ~FileAction();
     protected:
-        virtual bool enabledFor(const GitFileStatus& status) const = 0;
+        virtual bool enabledFor(const GitFileStatus& status) const;
     private:
-        cbGitFile& m_file;
         auto_ptr<GitFileStatus> getStatus(cbGitFile& projectFile) const;
+
+        cbGitFile& m_file;
+        int m_validStatuses;
 };
 
 #endif // FILEACTION_H
