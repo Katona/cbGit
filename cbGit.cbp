@@ -58,16 +58,8 @@
 		<Unit filename="src/cbGit.h">
 			<Option target="default" />
 		</Unit>
-		<Unit filename="src/controller/ProjectFileUpdater.cpp" />
-		<Unit filename="src/controller/ProjectFileUpdater.h" />
-		<Unit filename="src/controller/ProjectUpdater.cpp" />
-		<Unit filename="src/controller/ProjectUpdater.h" />
-		<Unit filename="src/controller/actions/AddFileAction.cpp" />
-		<Unit filename="src/controller/actions/AddFileAction.h" />
 		<Unit filename="src/controller/actions/AddFileActionHandler.cpp" />
 		<Unit filename="src/controller/actions/AddFileActionHandler.h" />
-		<Unit filename="src/controller/actions/CommitFileAction.cpp" />
-		<Unit filename="src/controller/actions/CommitFileAction.h" />
 		<Unit filename="src/controller/actions/CommitFileActionHandler.cpp" />
 		<Unit filename="src/controller/actions/CommitFileActionHandler.h" />
 		<Unit filename="src/controller/actions/CommitProjectAction.cpp" />
@@ -76,20 +68,14 @@
 		<Unit filename="src/controller/actions/CommitProjectActionHandler.h" />
 		<Unit filename="src/controller/actions/FileAction.cpp" />
 		<Unit filename="src/controller/actions/FileAction.h" />
-		<Unit filename="src/controller/actions/FileActionHandler.cpp" />
-		<Unit filename="src/controller/actions/FileActionHandler.h" />
 		<Unit filename="src/controller/actions/MenuAction.cpp" />
 		<Unit filename="src/controller/actions/MenuAction.h" />
 		<Unit filename="src/controller/actions/MenuActionFactory.cpp" />
 		<Unit filename="src/controller/actions/MenuActionFactory.h" />
-		<Unit filename="src/controller/actions/MenuActionHandler.cpp" />
-		<Unit filename="src/controller/actions/MenuActionHandler.h" />
 		<Unit filename="src/controller/actions/MenuActionSet.cpp" />
 		<Unit filename="src/controller/actions/MenuActionSet.h" />
 		<Unit filename="src/controller/actions/ProjectAction.cpp" />
 		<Unit filename="src/controller/actions/ProjectAction.h" />
-		<Unit filename="src/controller/actions/RevertFileAction.cpp" />
-		<Unit filename="src/controller/actions/RevertFileAction.h" />
 		<Unit filename="src/controller/actions/RevertFileActionHandler.cpp" />
 		<Unit filename="src/controller/actions/RevertFileActionHandler.h" />
 		<Unit filename="src/controller/event/EventHandler.cpp" />
