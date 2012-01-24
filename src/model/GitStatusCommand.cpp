@@ -1,12 +1,17 @@
 #include <iostream>
 #include <sys/stat.h>
+#include <wx/dir.h>
+#include <wx/arrstr.h>
+#include <wx/string.h>
 #include "GitStatusCommand.h"
 #include "FileStatuses.h"
+#include "../utils/Path.h"
 
 using namespace std;
 
-GitStatusCommand::GitStatusCommand(const string& workDir) :
-    GitCommand(workDir)
+GitStatusCommand::GitStatusCommand(const string& workDir,
+                                   bool traverseUntrackedFolder) :
+    GitCommand(workDir), m_traverseUntrackedFolder(traverseUntrackedFolder)
 {
     addArgument("status");
     addArgument("--porcelain");
@@ -28,11 +33,8 @@ void GitStatusCommand::getFileStatuses(FileStatuses& fileStatuses) {
     }
     vector<string> outputLines;
     getOutputLines(outputLines);
-//    cout << "Parsing output lines" << endl;
     for (vector<string>::size_type i = 0; i < outputLines.size(); i++) {
-        GitFileStatus* status = parseLine(outputLines[i]);
-//        cout << "Putting to the vector" << endl;
-        fileStatuses.add(auto_ptr<const GitFileStatus>(status));
+        processLine(fileStatuses, outputLines[i]);
     }
 
 }
@@ -50,16 +52,37 @@ GitFileStatus::FileStatus GitStatusCommand::convert(char statusChar) const {
     }
 }
 
-GitFileStatus* GitStatusCommand::parseLine(const string& line) const {
+GitFileStatus* GitStatusCommand::processLine(FileStatuses& statuses,
+                                             const string& line) {
 //    cout << "Parsing line: " << line << endl;
-    char stagingStatusChar = line[0];
-    char workTreeStatusChar = line[1];
+    GitFileStatus::FileStatus stagingStatus = convert(line[0]);
+    GitFileStatus::FileStatus workTreeStatus = convert(line[1]);
     string fileName = line.substr(3);
 //    cout << "Staging stat: " << stagingStatusChar << " Work Tree: " << workTreeStatusChar <<
 //        "FIle Name:" << fileName << endl;
-    return new GitFileStatus(fileName,
-                         convert(stagingStatusChar),
-                         convert(workTreeStatusChar));
+    Path path(fileName);
+    if ((m_traverseUntrackedFolder == true) &&
+        (workTreeStatus == GitFileStatus::untracked) &&
+        path.isDirectory()) {
+        traverseUntrackedFolder(statuses, fileName);
+    } else {
+        statuses.createAndAdd(fileName, stagingStatus, workTreeStatus);
+    }
+}
+
+void GitStatusCommand::traverseUntrackedFolder(FileStatuses& statuses,
+                                               const string& folder) {
+    /* Files in an untracked folder are assumed to be untracked, which might
+    not be true for ignored files. */
+    wxArrayString fileNames;
+
+    wxDir::GetAllFiles(wxString::FromUTF8(folder.c_str()), &fileNames);
+    for (size_t i = 0; i < fileNames.GetCount(); i++) {
+        statuses.createAndAdd(string(fileNames[i].mbc_str()),
+                              GitFileStatus::none,
+                              GitFileStatus::untracked);
+    }
+
 }
 
 GitStatusCommand::~GitStatusCommand()

@@ -14,7 +14,8 @@ class FileStatuses;
 class GitStatusCommand : public GitCommand
 {
     public:
-        GitStatusCommand(const string& workDir);
+        GitStatusCommand(const string& workDir,
+                         bool traverseUntrackedFolder = true);
         GitStatusCommand(const string& workDir, const string& fileName);
         void getFileStatuses(FileStatuses& statuses);
         bool isGitRepository();
@@ -22,8 +23,12 @@ class GitStatusCommand : public GitCommand
     protected:
     private:
 
-        GitFileStatus* parseLine(const string& line) const;
+        bool m_traverseUntrackedFolder;
+        GitFileStatus* processLine(FileStatuses& statuses,
+                                   const string& line);
         GitFileStatus::FileStatus convert(char statusChar) const;
+        void traverseUntrackedFolder(
+                FileStatuses& statuses, const string& folder);
 };
 
 #endif // GITSTATUSCOMMAND_H

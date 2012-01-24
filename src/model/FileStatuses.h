@@ -4,26 +4,32 @@
 #include <string>
 #include <map>
 #include <memory>
+#include "GitFileStatus.h"
 
 using namespace std;
 
-class GitFileStatus;
 
 class FileStatuses
 {
     public:
         FileStatuses();
-        void add(auto_ptr<const GitFileStatus> status);
-        GitFileStatus getStatus(const string& fileName) const;
+        GitFileStatus& createAndAdd(const string& fileName,
+                    GitFileStatus::FileStatus stagingStatus,
+                    GitFileStatus::FileStatus workTreeStatus);
+        const GitFileStatus& getStatus(const string& fileName) const;
         bool isEmpty() const;
 
         virtual ~FileStatuses();
     protected:
     private:
         map<string, const GitFileStatus*> m_fileStatuses;
-        map<string, const GitFileStatus*> m_folderStatuses;
+        /** Used to store 'none' statuses for files to which no status has
+            been found in m_fileStatuses. This is needed to be able return
+            references to GitFileStatus for such files as well without causing
+            memory leak.
+            */
+        mutable map<string, const GitFileStatus*> m_virtualStatuses;
 
-        bool isInUntrackedFolder(const string& fileName) const;
         void deleteMapValues(map<string, const GitFileStatus*> m);
         const GitFileStatus* getFileStatus(const string& fileName) const;
 };
