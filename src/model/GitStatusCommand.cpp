@@ -10,11 +10,11 @@
 
 using namespace std;
 
-GitStatusCommand::GitStatusCommand(const string& workDir,
-                                   bool traverseUntrackedFolder) :
-    GitCommand(workDir), m_traverseUntrackedFolder(traverseUntrackedFolder)
+GitStatusCommand::GitStatusCommand(const string& workDir) :
+    GitCommand(workDir)
 {
     addArgument("status");
+    addArgument("-u");
     addArgument("--porcelain");
 }
 
@@ -61,29 +61,7 @@ GitFileStatus* GitStatusCommand::processLine(FileStatuses& statuses,
     string fileName = line.substr(3);
 //    cout << "Staging stat: " << stagingStatusChar << " Work Tree: " << workTreeStatusChar <<
 //        "FIle Name:" << fileName << endl;
-    Path path(fileName);
-    if ((m_traverseUntrackedFolder == true) &&
-        (workTreeStatus == GitFileStatus::untracked) &&
-        path.isDirectory()) {
-        traverseUntrackedFolder(statuses, fileName);
-    } else {
-        statuses.createAndAdd(fileName, stagingStatus, workTreeStatus);
-    }
-}
-
-void GitStatusCommand::traverseUntrackedFolder(FileStatuses& statuses,
-                                               const string& folder) {
-    /* Files in an untracked folder are assumed to be untracked, which might
-    not be true for ignored files. */
-    wxArrayString fileNames;
-
-    wxDir::GetAllFiles(wxString::FromUTF8(folder.c_str()), &fileNames);
-    for (size_t i = 0; i < fileNames.GetCount(); i++) {
-        statuses.createAndAdd(toString(fileNames[i]),
-                              GitFileStatus::none,
-                              GitFileStatus::untracked);
-    }
-
+    statuses.createAndAdd(fileName, stagingStatus, workTreeStatus);
 }
 
 GitStatusCommand::~GitStatusCommand()
