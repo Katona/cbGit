@@ -2,10 +2,12 @@
 #define COMMITPROJECTACTIONHANDLER_H
 
 #include <string>
+#include <vector>
 #include "ProjectEventHandler.h"
 
 using namespace std;
 
+class GitFileStatus;
 
 class CommitProjectHandler : public ProjectEventHandler
 {
@@ -15,7 +17,10 @@ class CommitProjectHandler : public ProjectEventHandler
     protected:
         virtual void handleEvent(cbGitProject& project, GitModel& model);
     private:
-        void stageNecessaryFiles(const string& workDir);
+        void stageNecessaryFiles(GitModel& model,
+                                 const vector<GitFileStatus*>& fileStatuses);
+        void getFileNames(vector<string>& fileNames,
+                          const vector<GitFileStatus*>& fileStatuses);
 };
 
 #endif // COMMITPROJECTACTIONHANDLER_H

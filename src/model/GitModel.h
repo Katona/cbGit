@@ -16,6 +16,8 @@ class GitModel
                        const string& fileName = "");
         void add(const vector<string>& filesToAdd);
         void commitAll(const string& message);
+        void commitFiles(const vector<string>& relativeFileNames,
+                         const string& message);
         void checkoutFile(const string& fileName);
         void resetFile(const string& fileName);
         virtual ~GitModel();

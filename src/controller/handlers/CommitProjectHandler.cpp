@@ -23,8 +23,33 @@ void CommitProjectHandler::handleEvent(cbGitProject& project, GitModel& model) {
     CommitProjectDlg commitDialog(project, statuses);
     if (commitDialog.ShowModal() == wxID_OK) {
         string commitMsg = commitDialog.getCommitMessage();
-        gitModel.commitAll(commitMsg);
+        vector<GitFileStatus*> selectedFiles;
+        commitDialog.getSelectedFiles(selectedFiles);
+        stageNecessaryFiles(model, selectedFiles);
+        vector<string> fileNames;
+        getFileNames(fileNames, selectedFiles);
+        gitModel.commitFiles(fileNames, commitMsg);
         updateStatus(project);
+    }
+}
+
+void CommitProjectHandler::stageNecessaryFiles(
+        GitModel& model,
+        const vector<GitFileStatus*>& fileStatuses) {
+    vector<string> filesToStage;
+    for (int i = 0; i < fileStatuses.size(); i++) {
+        if (fileStatuses[i]->getWorkTreeStatus() && GitFileStatus::untracked) {
+            filesToStage.push_back(fileStatuses[i]->getFileName());
+        }
+    }
+    model.add(filesToStage);
+}
+
+void CommitProjectHandler::getFileNames(vector<string>& fileNames,
+                                        const vector<GitFileStatus*>& fileStatuses) {
+
+    for (int i = 0; i < fileStatuses.size(); i++) {
+        fileNames.push_back(fileStatuses[i]->getFileName());
     }
 }
 

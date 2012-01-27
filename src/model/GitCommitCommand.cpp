@@ -21,7 +21,15 @@ GitCommitCommand GitCommitCommand::file(const string& workDir,
     GitCommitCommand result(workDir, message);
     result.addArgument(fileName);
     return result;
+}
 
+GitCommitCommand GitCommitCommand::files(const string& workDir,
+                                        const vector<string>& fileNames,
+                                        const string& message) {
+    GitCommitCommand result(workDir, message);
+    result.addArgument("--");
+    result.addArguments(fileNames);
+    return result;
 }
 
 GitCommitCommand::~GitCommitCommand()

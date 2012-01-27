@@ -9,6 +9,7 @@ GitAddCommand::GitAddCommand(const string& workDir,
                              const vector<string>& files) :
         GitCommand(workDir) {
     addArgument("add");
+    addArgument("--");
     addArguments(files);
 }
 

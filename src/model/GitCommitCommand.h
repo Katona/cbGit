@@ -12,6 +12,9 @@ class GitCommitCommand : public GitCommand
         static GitCommitCommand file(const string& workDir,
                                      const string& fileName,
                                      const string& message = EMPTY_MESSAGE);
+        static GitCommitCommand files(const string& workDir,
+                                      const vector<string>& files,
+                                      const string& message = EMPTY_MESSAGE);
         virtual ~GitCommitCommand();
     protected:
     private:

@@ -120,13 +120,13 @@ string CommitProjectDlg::getCommitMessage() const {
 }
 
 void CommitProjectDlg::getSelectedFiles(vector<GitFileStatus*>& files) const {
-    wxArrayInt selections;
-    m_listFilesToCommit->GetSelections(selections);
-    for (int i = 0; i < selections.size(); i++) {
-        files.push_back(static_cast<GitFileStatus*>
-                        (m_listFilesToCommit->GetClientData(selections[i])));
+    for (int i = 0; i < m_listFilesToCommit->GetCount(); i++) {
+        if (m_listFilesToCommit->IsChecked(i)) {
+            files.push_back(static_cast<GitFileStatus*>
+                        (m_listFilesToCommit->GetClientData(i)));
+        }
+        m_listFilesToCommit->Check(i, true);
     }
-
 }
 
 void CommitProjectDlg::onSelectAllClicked(wxCommandEvent& event) {

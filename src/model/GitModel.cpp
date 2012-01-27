@@ -34,6 +34,14 @@ void GitModel::commitAll(const string& message) {
     commitAll.execute();
 }
 
+void GitModel::commitFiles(const vector<string>& relativeFileNames,
+                           const string& message) {
+    GitCommitCommand commitFiles = GitCommitCommand::files(m_workDir,
+                                                           relativeFileNames,
+                                                           message);
+    commitFiles.execute();
+}
+
 void GitModel::checkoutFile(const string& fileName) {
     GitCheckoutCommand(m_workDir).file(fileName).execute();
 }
