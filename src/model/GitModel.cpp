@@ -25,8 +25,10 @@ void GitModel::getStatus(FileStatuses& fileStatuses, const string& fileName) {
 }
 
 void GitModel::add(const vector<string>& filesToAdd) {
-    GitAddCommand addCmd(m_workDir, filesToAdd);
-    addCmd.execute();
+    if (!filesToAdd.empty()) {
+        GitAddCommand addCmd(m_workDir, filesToAdd);
+        addCmd.execute();
+    }
 }
 
 void GitModel::commitAll(const string& message) {

@@ -38,7 +38,7 @@ void CommitProjectHandler::stageNecessaryFiles(
         const vector<GitFileStatus*>& fileStatuses) {
     vector<string> filesToStage;
     for (int i = 0; i < fileStatuses.size(); i++) {
-        if (fileStatuses[i]->getWorkTreeStatus() && GitFileStatus::untracked) {
+        if ((fileStatuses[i]->getWorkTreeStatus() & GitFileStatus::untracked) > 0) {
             filesToStage.push_back(fileStatuses[i]->getFileName());
         }
     }
