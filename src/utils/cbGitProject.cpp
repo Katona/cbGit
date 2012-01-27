@@ -1,13 +1,18 @@
 #include "cbGitProject.h"
 #include "cbGitFile.h"
 #include "Utils.h"
+#include "Path.h"
 
 
 cbGitProject::cbGitProject(cbProject& cbProject) :
     m_cbProject(cbProject),
     m_topLevelPath(toString(cbProject.GetCommonTopLevelPath()))
+
 {
-   addAllGitFiles();
+    Path path(m_topLevelPath);
+    m_relativeProjectFileName =
+            path.getRelative(toString(cbProject.GetFilename()));
+    addAllGitFiles();
 }
 
 const string& cbGitProject::getTopLevelPath() const
@@ -33,6 +38,10 @@ void cbGitProject::addAllGitFiles() {
         cbGitFile* gitFile = new cbGitFile(*m_cbProject.GetFile(i));
         m_files[gitFile->getRelativeFileName()] = gitFile;
     }
+}
+
+const string& cbGitProject::getRelativeFileName() const {
+    return m_relativeProjectFileName;
 }
 
 cbGitProject::~cbGitProject()

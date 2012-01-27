@@ -4,9 +4,10 @@
 
 #include "../../model/GitModel.h"
 #include "../../model/GitFileStatus.h"
+#include "../../model/FileStatuses.h"
 #include "../../utils/Utils.h"
 #include "../../utils/cbGitProject.h"
-#include "../../view/CommitDlgMain.h"
+#include "../../view/CommitProjectDlg.h"
 
 CommitProjectHandler::CommitProjectHandler()
 {
@@ -14,11 +15,14 @@ CommitProjectHandler::CommitProjectHandler()
 }
 
 void CommitProjectHandler::handleEvent(cbGitProject& project, GitModel& model) {
-    cout << "Commiting project" << endl;
-    CommitDlgDialog commitDialog(0);
+    cout << "Committing project" << endl;
+    FileStatuses statuses;
+    GitModel gitModel(project.getTopLevelPath());
+    gitModel.getStatus(statuses);
+
+    CommitProjectDlg commitDialog(project, statuses);
     if (commitDialog.ShowModal() == wxID_OK) {
-        string commitMsg = toString(commitDialog.getCommitMessage());
-        GitModel gitModel(project.getTopLevelPath());
+        string commitMsg = commitDialog.getCommitMessage();
         gitModel.commitAll(commitMsg);
         updateStatus(project);
     }

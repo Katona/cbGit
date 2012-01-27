@@ -1,18 +1,32 @@
 #include "Path.h"
+#include "Utils.h"
 
-Path::Path(const string& relativeFileName) :
-    m_relativeFileName(relativeFileName)
+Path::Path(const string& path) :
+    m_path(path)
 {
 
 }
 
-bool Path::isDirectory() const {
-    if (m_relativeFileName.empty()) {
-        return false;
+string Path::getRelative(const string& absolutePath) const {
+    string result;
+    if (startsWith(absolutePath, m_path)) {
+        result = absolutePath.substr(m_path.size());
     }
-    /* Might not be too reliable, but faster than check it */
-    return m_relativeFileName[m_relativeFileName.size() - 1] == '/';
+    return result;
 }
+
+const string& Path::getPathStr() {
+    return m_path;
+}
+
+bool Path::isDirectory() const {
+    if (m_path.empty()) {
+        return false;
+     }
+    /* Might not be too reliable, but faster than check it */
+    return m_path[m_path.size() - 1] == '/';
+}
+
 
 Path::~Path()
 {

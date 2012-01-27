@@ -120,6 +120,8 @@
 		<Unit filename="src/utils/cbGitProject.h" />
 		<Unit filename="src/view/CommitDlgMain.cpp" />
 		<Unit filename="src/view/CommitDlgMain.h" />
+		<Unit filename="src/view/CommitProjectDlg.cpp" />
+		<Unit filename="src/view/CommitProjectDlg.h" />
 		<Unit filename="src/view/ContextMenuContribution.cpp" />
 		<Unit filename="src/view/ContextMenuContribution.h" />
 		<Unit filename="test/CommandTest.cpp">

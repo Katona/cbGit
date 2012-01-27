@@ -6,6 +6,7 @@
 #include "GitStatusCommand.h"
 #include "FileStatuses.h"
 #include "../utils/Path.h"
+#include "../utils/Utils.h"
 
 using namespace std;
 
@@ -78,7 +79,7 @@ void GitStatusCommand::traverseUntrackedFolder(FileStatuses& statuses,
 
     wxDir::GetAllFiles(wxString::FromUTF8(folder.c_str()), &fileNames);
     for (size_t i = 0; i < fileNames.GetCount(); i++) {
-        statuses.createAndAdd(string(fileNames[i].mbc_str()),
+        statuses.createAndAdd(toString(fileNames[i]),
                               GitFileStatus::none,
                               GitFileStatus::untracked);
     }

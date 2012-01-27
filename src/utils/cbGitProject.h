@@ -15,11 +15,13 @@ class cbGitProject
         const string& getTopLevelPath() const;
         cbGitFile* getFile(const string& relativeFileName);
         vector<cbGitFile*> getFiles() const;
+        const string& getRelativeFileName() const;
         virtual ~cbGitProject();
     protected:
     private:
         cbProject& m_cbProject;
         string m_topLevelPath;
+        string m_relativeProjectFileName;
         map<string, cbGitFile*> m_files;
         void addGitFile(const string& relativeFileName);
         void addAllGitFiles();
